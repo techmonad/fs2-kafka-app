@@ -24,4 +24,4 @@ ThisBuild / scalacOptions ++= Seq(
 
 parallelExecution in Test := false
 
-coverageExcludedPackages := "io.github.etl.*Main.*;io.github.etl.*Server.*"
+coverageExcludedPackages := Seq("").mkString(";")

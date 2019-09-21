@@ -1,6 +1,12 @@
 package com.techmonad.fs2kafka.config
 
-trait SchemaRegistry[D] {}
+trait SchemaRegistry[D] {
+
+  def serializer()
+
+  def deserializer()
+
+}
 
 object SchemaRegistry {
 
