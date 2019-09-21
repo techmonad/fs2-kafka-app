@@ -8,7 +8,18 @@ ThisBuild / organizationName := "techmonad"
 lazy val root = (project in file("."))
   .settings(
     name := "fs2-kafka-app",
-    libraryDependencies += scalaTest % Test
+    libraryDependencies ++= commonDependencies ++ testDependencies,
+    resolvers += "confluent" at "https://packages.confluent.io/maven/"
   )
 
-// See https://www.scala-sbt.org/1.x/docs/Using-Sonatype.html for instructions on how to publish to Sonatype.
+ThisBuild / scalacOptions ++= Seq(
+  "-deprecation",
+  "-encoding", "UTF-8",
+  "-language:higherKinds",
+  "-language:postfixOps",
+  "-feature",
+  //"-Ypartial-unification",
+  "-Xfatal-warnings",
+)
+
+coverageExcludedPackages := "io.github.etl.*Main.*;io.github.etl.*Server.*"
