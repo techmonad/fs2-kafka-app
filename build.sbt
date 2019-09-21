@@ -1,6 +1,6 @@
 import Dependencies._
 
-ThisBuild / scalaVersion     := "2.13.0"
+ThisBuild / scalaVersion     := "2.12.8"
 ThisBuild / version          := "0.1.0-SNAPSHOT"
 ThisBuild / organization     := "com.techmonad"
 ThisBuild / organizationName := "techmonad"
@@ -18,8 +18,10 @@ ThisBuild / scalacOptions ++= Seq(
   "-language:higherKinds",
   "-language:postfixOps",
   "-feature",
-  //"-Ypartial-unification",
+  "-Ypartial-unification",
   "-Xfatal-warnings",
 )
+
+parallelExecution in Test := false
 
 coverageExcludedPackages := "io.github.etl.*Main.*;io.github.etl.*Server.*"
