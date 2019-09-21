@@ -1,4 +1,4 @@
-package example
+package com.techmonad.fs2kafka.app
 
 object Hello extends Greeting with App {
   println(greeting)
