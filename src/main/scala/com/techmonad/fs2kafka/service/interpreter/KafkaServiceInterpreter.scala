@@ -5,11 +5,11 @@ package interpreter
 import cats.effect.IO
 import com.techmonad.fs2kafka.model.KafkaRequest
 
-class KafkaServiceInterpreter[D] extends KafkaService[IO, D] {
+class KafkaServiceInterpreter[V] extends KafkaService[IO, V] {
 
-  override def consume(request: KafkaRequest[D]): IO[Vector[(String, D)]] = ???
+  override def consume(request: KafkaRequest[V]): IO[Vector[(String, V)]] = ???
 
-  override def produce(request: KafkaRequest[D]): IO[Vector[(String, D)]] = ???
+  override def produce(request: KafkaRequest[V]): IO[Vector[(String, V)]] = ???
 
 }
 
