@@ -5,17 +5,9 @@ import vulcan.Codec
 
 final case class KafkaConfig(topic: String, bootstrapServers: String, schemaRegistry: String)
 
-trait KafkaRequest[D] {
+final case class KafkaRequest[V](config: KafkaConfig, messages: List[V])
 
-  val messages: List[D]
-
-}
-
-final case class AvroKafkaRequest(config: KafkaConfig, messages: List[Person]) extends KafkaRequest[Person]
-
-final case class StringKafkaRequest(config: KafkaConfig, messages: List[String]) extends KafkaRequest[String]
-
-final case class Person(name: String, age: Int)
+final case class Person(name: String, address: String)
 
 object Person {
 
@@ -26,7 +18,7 @@ object Person {
     ) { field =>
       (
         field("name", _.name),
-        field("age", _.age)
+        field("age", _.address)
       ).mapN(Person(_, _))
     }
 
