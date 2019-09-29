@@ -19,7 +19,7 @@ trait KafkaProperties {
 
   final private def defaultProperties: Map[String, String] = Map {
     CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG -> config.bootstrapServers
-    CommonClientConfigs.CLIENT_ID_CONFIG -> "techmonad-fs2-kafka"
+    CommonClientConfigs.CLIENT_ID_CONFIG -> "techmonad"
   }
 
 }

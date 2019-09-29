@@ -3,11 +3,11 @@ package service
 package interpreter
 
 import cats.effect.{IO, _}
-import com.techmonad.fs2kafka.config.{KafkaEnvironment, KafkaProperties, SchemaRegistry}
+import cats.implicits._
+import com.techmonad.fs2kafka.config.KafkaEnvironment
 import com.techmonad.fs2kafka.model.KafkaRequest
 import fs2.kafka.{ProducerRecord, ProducerRecords, _}
 import fs2.{Chunk, Stream}
-import cats.implicits._
 
 import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._

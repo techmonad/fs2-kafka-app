@@ -21,7 +21,7 @@ object SchemaRegistry {
 
       val avroSettings: AvroSettings[F] = AvroSettings {
         SchemaRegistryClientSettings[F](schemaRegistryUrl)
-      }
+      }.withAutoRegisterSchemas(true)
 
       override def serializer: Serializer.Record[F, V] = avroSerializer[V].using(avroSettings)
 
