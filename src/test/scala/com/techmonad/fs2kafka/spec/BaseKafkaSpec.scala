@@ -26,21 +26,21 @@ abstract class BaseKafkaSpec extends BaseAsyncSpec with EmbeddedKafka {
   final val transactionTimeoutInterval: FiniteDuration = 1.second
 
   final def adminClientSettings(
-                                 config: EmbeddedKafkaConfig
-                               ): AdminClientSettings[IO] =
+    config: EmbeddedKafkaConfig
+  ): AdminClientSettings[IO] =
     AdminClientSettings[IO]
       .withProperties(adminClientProperties(config))
 
   final def consumerSettings[F[_]](
-                                    config: EmbeddedKafkaConfig
-                                  )(implicit F: Sync[F]): ConsumerSettings[F, String, String] =
+    config: EmbeddedKafkaConfig
+  )(implicit F: Sync[F]): ConsumerSettings[F, String, String] =
     ConsumerSettings[F, String, String]
       .withProperties(consumerProperties(config))
       .withRecordMetadata(_.timestamp.toString)
 
   final def producerSettings[F[_]](
-                                    config: EmbeddedKafkaConfig
-                                  )(implicit F: Sync[F]): ProducerSettings[F, String, String] =
+    config: EmbeddedKafkaConfig
+  )(implicit F: Sync[F]): ProducerSettings[F, String, String] =
     ProducerSettings[F, String, String]
       .withProperties(producerProperties(config))
 
@@ -72,13 +72,13 @@ abstract class BaseKafkaSpec extends BaseAsyncSpec with EmbeddedKafka {
     )(f(_, nextTopicName()))
 
   final def withKafkaConsumer(
-                               nativeSettings: Map[String, AnyRef]
-                             ): WithKafkaConsumer =
+    nativeSettings: Map[String, AnyRef]
+  ): WithKafkaConsumer =
     new WithKafkaConsumer(nativeSettings)
 
   final class WithKafkaConsumer(
-                                 nativeSettings: Map[String, AnyRef]
-                               ) {
+    nativeSettings: Map[String, AnyRef]
+  ) {
     def apply[A](f: KConsumer[Array[Byte], Array[Byte]] => A): A = {
       val consumer: KConsumer[Array[Byte], Array[Byte]] =
         new KConsumer[Array[Byte], Array[Byte]](
