@@ -15,11 +15,10 @@ object MainApp extends App {
     messages = List(Person("Lukas", "NL"), Person("Charlie", "US"))
   )
 
-  val properties = KafkaProperties(request.config)
-  val schema = SchemaRegistry.impl[IO, Person](request.config.schemaRegistry)
-  val kafkaEnv = KafkaEnvironment.impl[IO, Person](properties, schema)
+  val schema = SchemaRegistry.impl[IO, Person]
+  val kafkaEnv = KafkaEnvironment.impl[IO, Person](schema)
 
-  val service = KafkaService(kafkaEnv)
+  val service = KafkaService[Person](kafkaEnv)
   val produced = service.produce(request).unsafeRunSync()
   val consumed = service.consume(request).unsafeRunSync()
 

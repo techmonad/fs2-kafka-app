@@ -20,7 +20,7 @@ class KafkaServiceInterpreter[V](kafkaEnvironment: KafkaEnvironment[IO, V]) exte
 
   override def consume(request: KafkaRequest[V]): IO[Vector[(String, V)]] =
     consumerStream[IO]
-      .using(kafkaEnvironment.consumerSettings)
+      .using(kafkaEnvironment.consumerSettings(request.config))
       .evalTap(_.subscribeTo(request.config.topic))
       .evalMap(IO.sleep(3.seconds).as) // sleep a bit to trigger potential race condition with _.stream
       .flatMap(_.stream)
@@ -32,7 +32,7 @@ class KafkaServiceInterpreter[V](kafkaEnvironment: KafkaEnvironment[IO, V]) exte
   override def produce(request: KafkaRequest[V]): IO[Vector[(String, V)]] = {
     val toProduce = request.messages.zipWithIndex.map { case (value, index) => s"key-$index" -> value }
     (for {
-      settings <- Stream(kafkaEnvironment.producerSettings)
+      settings <- Stream(kafkaEnvironment.producerSettings(request.config))
       producer <- producerStream[IO].using(settings)
       records <- Stream.chunk(Chunk.seq(toProduce).map {
         case passthrough @ (key, value) =>

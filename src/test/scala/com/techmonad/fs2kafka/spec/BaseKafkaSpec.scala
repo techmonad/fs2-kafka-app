@@ -4,14 +4,13 @@ import java.util.UUID
 
 import cats.effect.{IO, Sync}
 import com.techmonad.fs2kafka.model.KafkaConfig
+import com.techmonad.fs2kafka.spec.converters.collection._
 import fs2.kafka._
-import io.confluent.kafka.schemaregistry.avro.AvroCompatibilityLevel
-import net.manub.embeddedkafka.schemaregistry.{EmbeddedKafka, EmbeddedKafkaConfig}
+import net.manub.embeddedkafka.{EmbeddedKafka, EmbeddedKafkaConfig}
 import org.apache.kafka.clients.admin.AdminClientConfig
 import org.apache.kafka.clients.consumer.{ConsumerConfig, KafkaConsumer => KConsumer}
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.ByteArrayDeserializer
-import com.techmonad.fs2kafka.spec.converters.collection._
 
 import scala.concurrent.duration._
 
@@ -58,12 +57,12 @@ abstract class BaseKafkaSpec extends BaseAsyncSpec with EmbeddedKafka {
     Map(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG -> s"localhost:${config.kafkaPort}")
 
   final def toKafkaConfig(topic: String, config: EmbeddedKafkaConfig): KafkaConfig =
-    KafkaConfig(topic, s"localhost:${config.kafkaPort}", s"http://localhost:${config.schemaRegistryPort}")
+    KafkaConfig(topic, s"localhost:${config.kafkaPort}", s"http://localhost:${6001}")
 
   final def withKafka[A](f: (EmbeddedKafkaConfig, String) => A): A =
     withRunningKafkaOnFoundPort(
       EmbeddedKafkaConfig(
-        avroCompatibilityLevel = AvroCompatibilityLevel.FULL,
+        //avroCompatibilityLevel = AvroCompatibilityLevel.FULL,
         customBrokerProperties = Map(
           "transaction.state.log.replication.factor" -> "1",
           "transaction.abort.timed.out.transaction.cleanup.interval.ms" -> transactionTimeoutInterval.toMillis.toString
