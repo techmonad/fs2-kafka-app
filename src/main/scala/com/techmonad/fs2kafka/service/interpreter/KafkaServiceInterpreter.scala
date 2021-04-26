@@ -34,9 +34,8 @@ class KafkaServiceInterpreter[V](kafkaEnvironment: KafkaEnvironment[IO, V]) exte
     (for {
       settings <- Stream(kafkaEnvironment.producerSettings(request.config))
       producer <- producerStream[IO].using(settings)
-      records <- Stream.chunk(Chunk.seq(toProduce).map {
-        case passthrough @ (key, value) =>
-          ProducerRecords.one(ProducerRecord(request.config.topic, key, value), passthrough)
+      records <- Stream.chunk(Chunk.seq(toProduce).map { case passthrough @ (key, value) =>
+        ProducerRecords.one(ProducerRecord(request.config.topic, key, value), passthrough)
       })
       batched <- Stream
         .eval(producer.produce(records))
