@@ -26,14 +26,14 @@ object KafkaEnvironment {
       override def producerSettings(config: KafkaConfig): ProducerSettings[F, String, V] = {
         implicit val as: AvroSettings[F] = schemaRegistry.avroSettings(config.schemaRegistry)
         implicit val valueSerializer: Serializer.Record[F, V] = schemaRegistry.serializer
-        ProducerSettings[F, String, V].withProperties(producerProperties((config)))
+        ProducerSettings[F, String, V].withProperties(producerProperties(config))
       }
 
       override def consumerSettings(config: KafkaConfig): ConsumerSettings[F, String, V] = {
         implicit val as: AvroSettings[F] = schemaRegistry.avroSettings(config.schemaRegistry)
         implicit val valueDeserializer: Deserializer.Record[F, V] = schemaRegistry.deserializer
         ConsumerSettings[F, String, V]
-          .withProperties(consumerProperties((config)))
+          .withProperties(consumerProperties(config))
           .withRecordMetadata(_.timestamp.toString)
       }
 
