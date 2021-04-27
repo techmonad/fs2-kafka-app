@@ -11,7 +11,7 @@ object Dependencies {
   lazy val embeddedKafka = "io.github.embeddedkafka" %% "embedded-kafka-schema-registry" % "5.3.2"
 
   lazy val scalacheck = "org.scalatestplus" %% "scalatestplus-scalacheck" % "3.1.0.0-RC2"
-  lazy val discipline = "org.typelevel" %% "discipline-scalatest" % "1.0.0-M1"
+  lazy val discipline = "org.typelevel" %% "discipline-scalatest" % "1.0.1"
 
   lazy val logback = "ch.qos.logback" % "logback-classic" % "1.2.3"
 
