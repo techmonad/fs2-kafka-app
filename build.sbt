@@ -31,6 +31,5 @@ ThisBuild / scalacOptions ++= Seq(
   "-language:higherKinds",
   "-language:postfixOps",
   "-feature",
-  "-Ypartial-unification",
   "-Xfatal-warnings"
 )
