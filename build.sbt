@@ -8,9 +8,9 @@ ThisBuild / organizationName := "techmonad"
 lazy val root = (project in file("."))
   .settings(
     name := "fs2-kafka-app",
-    parallelExecution in Test := false,
-    logBuffered in Test := false,
-    fork in Test := true,
+    parallelExecution / Test := false,
+    logBuffered / Test := false,
+    fork / Test := true,
     scalacOptions += "-deprecation",
     scalafmtOnCompile := true,
     coverageExcludedPackages := Seq("").mkString(";"),
@@ -18,6 +18,7 @@ lazy val root = (project in file("."))
   )
   .settings(
     resolvers ++= Seq(
+      "jitpack".at("https://jitpack.io"),
       "confluent".at("https://packages.confluent.io/maven/"),
       Resolver.sonatypeRepo("snapshots")
     )
