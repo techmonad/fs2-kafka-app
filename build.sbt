@@ -8,9 +8,9 @@ ThisBuild / organizationName := "techmonad"
 lazy val root = (project in file("."))
   .settings(
     name := "fs2-kafka-app",
-    parallelExecution / Test := false,
-    logBuffered / Test := false,
-    fork / Test := true,
+    parallelExecution in Test := false,
+    logBuffered in Test := false,
+    fork in Test := true,
     scalacOptions += "-deprecation",
     scalafmtOnCompile := true,
     coverageExcludedPackages := Seq("").mkString(";"),
