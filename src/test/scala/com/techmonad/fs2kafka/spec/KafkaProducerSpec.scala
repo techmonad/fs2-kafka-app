@@ -51,7 +51,7 @@ final class KafkaProducerSpec extends BaseKafkaSpec {
                                     toPassthrough
           )
           result <- Stream.eval(producer.produce(records).flatten)
-        } yield result).compile.lastOrError.unsafeRunSync
+        } yield result).compile.lastOrError.unsafeRunSync()
 
       val records =
         produced.records.map { case (record, _) =>
@@ -77,7 +77,7 @@ final class KafkaProducerSpec extends BaseKafkaSpec {
           producer <- producerStream[IO].using(producerSettings(config))
           records = ProducerRecords(Nil, passthrough)
           result <- Stream.eval(producer.produce(records).flatten)
-        } yield result).compile.lastOrError.unsafeRunSync
+        } yield result).compile.lastOrError.unsafeRunSync()
 
       assert(result.passthrough == passthrough)
     }
@@ -94,7 +94,7 @@ final class KafkaProducerSpec extends BaseKafkaSpec {
           result <- Stream.eval {
             producer.produce(ProducerRecords(Nil, passthrough)).flatten
           }
-        } yield result).compile.lastOrError.unsafeRunSync
+        } yield result).compile.lastOrError.unsafeRunSync()
 
       assert(result.passthrough == passthrough)
     }

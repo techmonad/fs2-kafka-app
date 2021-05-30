@@ -3,20 +3,18 @@ package service
 package interpreter
 
 import com.techmonad.fs2kafka.model.KafkaConfig
-import io.confluent.kafka.schemaregistry.avro.AvroCompatibilityLevel
+import io.github.embeddedkafka.EmbeddedKafka.withRunningKafka
 import net.manub.embeddedkafka.schemaregistry.EmbeddedKafkaConfig
-import net.manub.embeddedkafka.schemaregistry.streams.EmbeddedKafkaStreamsAllInOne
 import org.scalatest.Assertions
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-class KafkaServiceSpec extends AnyWordSpec with EmbeddedKafkaStreamsAllInOne with Assertions with Matchers {
+class KafkaServiceSpec extends AnyWordSpec with Assertions with Matchers {
 
   "runs with embedded kafka and Schema Registry" should {
 
     "work" in {
       implicit val config = EmbeddedKafkaConfig(
-        avroCompatibilityLevel = AvroCompatibilityLevel.FULL,
         customBrokerProperties = Map(
           "transaction.state.log.replication.factor" -> "1",
           "transaction.abort.timed.out.transaction.cleanup.interval.ms" -> "1000"

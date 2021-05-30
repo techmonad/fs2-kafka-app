@@ -11,3 +11,4 @@ target
 .idea/
 platform-logs
 .attach_*
+/.bsp/

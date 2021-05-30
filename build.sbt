@@ -1,4 +1,6 @@
 import Dependencies._
+import sbt._
+import Keys._
 
 ThisBuild / scalaVersion := "2.13.5"
 ThisBuild / version := "0.1.0-SNAPSHOT"
@@ -8,9 +10,9 @@ ThisBuild / organizationName := "techmonad"
 lazy val root = (project in file("."))
   .settings(
     name := "fs2-kafka-app",
-    parallelExecution in Test := false,
-    logBuffered in Test := false,
-    fork in Test := true,
+    Test / parallelExecution := false,
+    Test / logBuffered := false,
+    Test / fork := true,
     scalacOptions += "-deprecation",
     scalafmtOnCompile := true,
     coverageExcludedPackages := Seq("").mkString(";"),

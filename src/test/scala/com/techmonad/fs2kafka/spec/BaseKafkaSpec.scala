@@ -1,12 +1,11 @@
 package com.techmonad.fs2kafka.spec
 
 import java.util.UUID
-
 import cats.effect.{IO, Sync}
 import com.techmonad.fs2kafka.model.KafkaConfig
-import com.techmonad.fs2kafka.spec.converters.collection._
+import com.techmonad.fs2kafka.spec.Converters.collection._
 import fs2.kafka._
-import net.manub.embeddedkafka.{EmbeddedKafka, EmbeddedKafkaConfig}
+import io.github.embeddedkafka.{EmbeddedKafka, EmbeddedKafkaConfig}
 import org.apache.kafka.clients.admin.AdminClientConfig
 import org.apache.kafka.clients.consumer.{ConsumerConfig, KafkaConsumer => KConsumer}
 import org.apache.kafka.clients.producer.ProducerConfig
