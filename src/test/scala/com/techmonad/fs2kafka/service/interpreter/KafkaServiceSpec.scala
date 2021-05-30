@@ -4,7 +4,7 @@ package interpreter
 
 import com.techmonad.fs2kafka.model.KafkaConfig
 import io.github.embeddedkafka.EmbeddedKafka.withRunningKafka
-import net.manub.embeddedkafka.schemaregistry.EmbeddedKafkaConfig
+import io.github.embeddedkafka.EmbeddedKafkaConfig
 import org.scalatest.Assertions
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
@@ -41,7 +41,7 @@ class KafkaServiceSpec extends AnyWordSpec with Assertions with Matchers {
     }
 
     def toKafkaConfig(topic: String, config: EmbeddedKafkaConfig): KafkaConfig =
-      KafkaConfig(topic, s"localhost:${config.kafkaPort}", s"http://localhost:${config.schemaRegistryPort}")
+      KafkaConfig(topic, s"localhost:${config.kafkaPort}", s"http://localhost:${config.zooKeeperPort}")
 
   }
 
