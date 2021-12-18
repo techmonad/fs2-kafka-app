@@ -13,7 +13,7 @@ object Dependencies {
   lazy val scalacheck = "org.scalatestplus" %% "scalatestplus-scalacheck" % "3.1.0.0-RC2"
   lazy val discipline = "org.typelevel" %% "discipline-scalatest" % "2.1.5"
 
-  lazy val logback = "ch.qos.logback" % "logback-classic" % "1.2.6"
+  lazy val logback = "ch.qos.logback" % "logback-classic" % "1.2.9"
 
   lazy val commonDependencies: Seq[ModuleID] = Seq(fs2Kafka, fs2KafkaVulcan)
 
