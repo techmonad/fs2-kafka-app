@@ -61,7 +61,7 @@ abstract class BaseKafkaSpec extends BaseAsyncSpec with EmbeddedKafka {
   final def withKafka[A](f: (EmbeddedKafkaConfig, String) => A): A =
     withRunningKafkaOnFoundPort(
       EmbeddedKafkaConfig(
-        //avroCompatibilityLevel = AvroCompatibilityLevel.FULL,
+        // avroCompatibilityLevel = AvroCompatibilityLevel.FULL,
         customBrokerProperties = Map(
           "transaction.state.log.replication.factor" -> "1",
           "transaction.abort.timed.out.transaction.cleanup.interval.ms" -> transactionTimeoutInterval.toMillis.toString
