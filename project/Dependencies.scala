@@ -7,13 +7,13 @@ object Dependencies {
   lazy val fs2Kafka = "com.ovoenergy" %% "fs2-kafka" % "0.20.2"
   lazy val fs2KafkaVulcan = "com.ovoenergy" %% "fs2-kafka-vulcan" % "0.20.2"
 
-  lazy val scalaTest = "org.scalatest" %% "scalatest" % "3.2.12"
-  lazy val embeddedKafka = "io.github.embeddedkafka" %% "embedded-kafka-schema-registry" % "7.0.1"
+  lazy val scalaTest = "org.scalatest" %% "scalatest" % "3.2.11"
+  lazy val embeddedKafka = "io.github.embeddedkafka" %% "embedded-kafka-schema-registry" % "7.0.3"
 
   lazy val scalacheck = "org.scalatestplus" %% "scalatestplus-scalacheck" % "3.1.0.0-RC2"
   lazy val discipline = "org.typelevel" %% "discipline-scalatest" % "2.1.5"
 
-  lazy val logback = "ch.qos.logback" % "logback-classic" % "1.2.10"
+  lazy val logback = "ch.qos.logback" % "logback-classic" % "1.2.11"
 
   lazy val commonDependencies: Seq[ModuleID] = Seq(fs2Kafka, fs2KafkaVulcan)
 
@@ -21,7 +21,7 @@ object Dependencies {
     Seq(scalaTest, scalacheck, discipline, embeddedKafka, logback) ++
       Seq(
         "io.github.embeddedkafka" %% "embedded-kafka" % "3.1.0",
-        "org.apache.kafka" %% "kafka" % "7.0.1-ce"
+        "org.apache.kafka" %% "kafka" % "7.0.3-ce"
       )
   }.map(_ % Test)
 
