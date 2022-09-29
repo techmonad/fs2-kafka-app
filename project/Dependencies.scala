@@ -7,7 +7,7 @@ object Dependencies {
   lazy val fs2Kafka = "com.ovoenergy" %% "fs2-kafka" % "0.20.2"
   lazy val fs2KafkaVulcan = "com.ovoenergy" %% "fs2-kafka-vulcan" % "0.20.2"
 
-  lazy val scalaTest = "org.scalatest" %% "scalatest" % "3.2.13"
+  lazy val scalaTest = "org.scalatest" %% "scalatest" % "3.2.14"
   lazy val embeddedKafka = "io.github.embeddedkafka" %% "embedded-kafka-schema-registry" % "7.2.0"
 
   lazy val scalacheck = "org.scalatestplus" %% "scalatestplus-scalacheck" % "3.1.0.0-RC2"
