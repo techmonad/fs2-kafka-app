@@ -20,7 +20,7 @@ object Dependencies {
   lazy val testDependencies: Seq[ModuleID] = {
     Seq(scalaTest, scalacheck, discipline, embeddedKafka, logback) ++
       Seq(
-        "io.github.embeddedkafka" %% "embedded-kafka" % "3.2.3",
+        "io.github.embeddedkafka" %% "embedded-kafka" % "3.3.1",
         "org.apache.kafka" %% "kafka" % "7.2.2-ce"
       )
   }.map(_ % Test)
