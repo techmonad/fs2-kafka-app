@@ -21,7 +21,7 @@ object Dependencies {
     Seq(scalaTest, scalacheck, discipline, embeddedKafka, logback) ++
       Seq(
         "io.github.embeddedkafka" %% "embedded-kafka" % "3.3.1",
-        "org.apache.kafka" %% "kafka" % "7.2.2-ce"
+        "org.apache.kafka" %% "kafka" % "7.3.0-ce"
       )
   }.map(_ % Test)
 
